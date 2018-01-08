@@ -16,6 +16,8 @@ public class SphereController : MonoBehaviour {
 
     public Rigidbody2D rb;
 
+    public GameObject planet;
+
     void OnStart()
     {
         line = gameObject.GetComponent<LineRenderer>();
@@ -51,8 +53,24 @@ public class SphereController : MonoBehaviour {
     {
         line.SetPosition(1, transform.position);
 
-        Vector2 goHere = new Vector2(lastPos.x, lastPos.y);
+        Vector3 goHere = transform.position - lastPos;
+
+        //Vector2 goHere = new Vector2(lastPos.x, lastPos.y);
 
         rb.AddForce(goHere * 100.0f);
+
+        var pe2d = planet.GetComponent<PointEffector2D>();
+
+        pe2d.enabled = true;
+
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Finish")
+        {
+            Debug.Log("you did it");
+            //.      Time.timeScale = 0;
+        }
     }
 }
