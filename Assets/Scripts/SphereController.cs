@@ -51,7 +51,7 @@ public class SphereController : MonoBehaviour {
 
     void OnMouseUp()
     {
-        line.SetPosition(1, transform.position);
+        //line.SetPosition(1, transform.position);
 
         Vector3 goHere = transform.position - lastPos;
 
@@ -63,6 +63,13 @@ public class SphereController : MonoBehaviour {
 
         pe2d.enabled = true;
 
+        // trail of where you once were, and have it persist throughout the play through
+
+    }
+
+    void FollowTheSphere()
+    {
+        line.setPosition()
     }
 
     void OnCollisionEnter2D(Collision2D coll)
